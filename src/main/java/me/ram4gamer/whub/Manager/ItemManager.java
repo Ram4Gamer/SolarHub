@@ -25,25 +25,5 @@ public final class ItemManager implements Manager {
         compassMeta.setLore(compassLore);
         compass.setItemMeta(compassMeta);
         player.getInventory().addItem(compass);
-        //Player Hider/Enabler
-        if (PlayerHiderManager.hasHiddenSettings.contains(player)) {
-            ItemStack redstoneTorch = new ItemStack(Material.REDSTONE_TORCH_OFF);
-            ItemMeta redstoneMeta = redstoneTorch.getItemMeta();
-            redstoneMeta.setDisplayName(Color.translate("&bShow players"));
-            ArrayList<String> redstoneLore = new ArrayList<>();
-            redstoneLore.add("");
-            redstoneMeta.setLore(redstoneLore);
-            redstoneTorch.setItemMeta(redstoneMeta);
-            player.getInventory().addItem(redstoneTorch);
-        }else {
-            ItemStack redstoneTorch = new ItemStack(Material.REDSTONE_TORCH_ON);
-            ItemMeta redstoneMeta = redstoneTorch.getItemMeta();
-            redstoneMeta.setDisplayName(Color.translate("&bHide players"));
-            ArrayList<String> redstoneLore = new ArrayList<>();
-            redstoneLore.add("");
-            redstoneMeta.setLore(redstoneLore);
-            redstoneTorch.setItemMeta(redstoneMeta);
-            player.getInventory().addItem(redstoneTorch);
-        }
     }
 }

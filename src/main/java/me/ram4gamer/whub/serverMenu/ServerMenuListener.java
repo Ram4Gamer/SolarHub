@@ -61,9 +61,9 @@ public class ServerMenuListener implements Listener {
                                 }
                                 int urPos1 = urPos - 1;
                                 if (PriorityManager.vipPracticQueue.lastIndexOf(p) == 0) {
-                                    p.sendMessage(Color.translate("&bYou are in pos ") + ChatColor.DARK_AQUA + "1" + ChatColor.AQUA + "# out of " + ChatColor.DARK_AQUA + PriorityManager.vipPracticQueue.size() + ChatColor.AQUA + "#");
+                                    p.sendMessage(Color.translate(plugin.getConfig().getString("queue.message").replaceAll("<pos>", urPos + "#").replaceAll("<total>", PriorityManager.vipPracticQueue.size() + "#")));
                                 }else {
-                                    p.sendMessage(Color.translate("&bYou are in pos ") + ChatColor.DARK_AQUA + urPos1 + ChatColor.AQUA + "# out of " + ChatColor.DARK_AQUA + PriorityManager.vipPracticQueue.size() + ChatColor.AQUA + "#");
+                                    p.sendMessage(Color.translate(plugin.getConfig().getString("queue.message").replaceAll("<pos>", urPos + "#").replaceAll("<total>", PriorityManager.vipPracticQueue.size() + "#")));
                                 }
                             }
                         },plugin.getConfig().getInt("queue.delay") * 10, plugin.getConfig().getInt("queue.delay") * 10);
@@ -75,7 +75,7 @@ public class ServerMenuListener implements Listener {
                     QueueManager.inserttoPracticeQueue(p, peopleinPracticeQueue);
                     plugin.setInQueueScoreboard(p);
                     int urPos = QueueManager.practiceQueue.lastIndexOf(p) + 1;
-                    p.sendMessage(Color.translate("&bYou are in pos ") + ChatColor.DARK_AQUA + urPos + ChatColor.AQUA + "# out of " + ChatColor.DARK_AQUA + QueueManager.practiceQueue.size() + ChatColor.AQUA + "#");
+                    p.sendMessage(Color.translate(plugin.getConfig().getString("queue.message").replaceAll("<pos>", urPos + "#").replaceAll("<total>", String.valueOf(QueueManager.practiceQueue.size()) + "#")));
                     //Getting the first place & sending them to Practice!
                     Bukkit.getScheduler().scheduleSyncDelayedTask(WHub.getINSTANCE(), new java.lang.Runnable() {
                         @Override
@@ -99,9 +99,9 @@ public class ServerMenuListener implements Listener {
                             }
                             int urPos1 = urPos - 1;
                             if (QueueManager.practiceQueue.lastIndexOf(p) == 0) {
-                                p.sendMessage(Color.translate("&bYou are in pos ") + ChatColor.DARK_AQUA + "1" + ChatColor.AQUA + "# out of " + ChatColor.DARK_AQUA + QueueManager.practiceQueue.size() + ChatColor.AQUA + "#");
+                                p.sendMessage(Color.translate(plugin.getConfig().getString("queue.message").replaceAll("<pos>", String.valueOf(urPos) + "#").replaceAll("<total>", QueueManager.practiceQueue.size() + "#")));
                             }else {
-                                p.sendMessage(Color.translate("&bYou are in pos ") + ChatColor.DARK_AQUA + urPos1 + ChatColor.AQUA + "# out of " + ChatColor.DARK_AQUA + QueueManager.practiceQueue.size() + ChatColor.AQUA + "#");
+                                p.sendMessage(Color.translate(plugin.getConfig().getString("queue.message").replaceAll("<pos>", urPos + "#").replaceAll("<total>", String.valueOf(QueueManager.practiceQueue.size()) + "#")));
                             }
                         }
                     }, plugin.getConfig().getInt("queue.delay") * 20, plugin.getConfig().getInt("queue.delay") * 20);

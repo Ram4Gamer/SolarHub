@@ -1,7 +1,6 @@
 package me.ram4gamer.whub.Listeners;
 
 import me.ram4gamer.whub.Manager.ItemManager;
-import me.ram4gamer.whub.Manager.PlayerHiderManager;
 import me.ram4gamer.whub.WHub;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -50,18 +49,6 @@ public class PlayerListener implements Listener {
         plugin.setMainScoreboard(player);
     }
 
-    @EventHandler
-    public void onJoin(PlayerJoinEvent e) {
-        Player player = e.getPlayer();
-        for (int i = 0; i < PlayerHiderManager.hasHiddenSettings.size(); i++) {
-            if (PlayerHiderManager.hasHiddenSettings.get(i).hasPermission("hub.bypass.invisible")) {
-                return;
-            }else {
-                PlayerHiderManager.hasHiddenSettings.get(i).hidePlayer(plugin, player);
-            }
-
-        }
-    }
 
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent e) {
@@ -92,15 +79,6 @@ public class PlayerListener implements Listener {
             }
         }
 
-        if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-            if (e.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.AQUA + "Show players")) {
-                PlayerHiderManager.hidePlayersfromPlayer(player);
-                ItemManager.giveDefaultItems(player);
-            }else if (e.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.AQUA + "Hide players")) {
-                PlayerHiderManager.showPlayersforPlayer(player);
-                ItemManager.giveDefaultItems(player);
-            }
-        }
     }
 
     @EventHandler

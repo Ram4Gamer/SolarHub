@@ -1,6 +1,6 @@
-name: NHub
+name: wHub
 version: ${project.version}
-main: me.ram4gamer.nhub.NHub
+main: me.ram4gamer.whub.WHub
 authors: [ Ram4Gamer_ ]
 commands:
   servermenu:
