@@ -1,0 +1,8 @@
+name: NHub
+version: ${project.version}
+main: me.ram4gamer.nhub.NHub
+authors: [ Ram4Gamer_ ]
+commands:
+  servermenu:
+  setspawn:
+  hub:

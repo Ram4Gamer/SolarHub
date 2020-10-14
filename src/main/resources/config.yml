@@ -1,0 +1,17 @@
+#############################
+## nHub made by Ram4Gamer_ ##
+#############################
+
+
+media:
+  website: "www.example.com"
+
+queue:
+  ## delay is how much seconds it takes to send each player
+  delay: 4
+options:
+  break-block: false
+  pickup-items: false
+  drop-items: false
+  weather-change: false
+  food-fevel-change: false
