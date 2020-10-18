@@ -16,6 +16,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Queue;
+
 public class ServerMenuListener implements Listener {
 
     private WHub plugin;
@@ -51,12 +53,18 @@ public class ServerMenuListener implements Listener {
                                     BungeeUtils.send(pos1, "Practice");
                                 }
                             }
-                        }, plugin.getConfig().getInt("queue.delay") * 10);
+                        }, plugin.getConfig().getInt("queue.donator-delay") * 20);
                         //Sending them a message each Send
                         Runnable.scheduleSyncRepeatingTask(WHub.getINSTANCE(), new BukkitRunnable() {
                             @Override
                             public void run() {
                                 if (!PriorityManager.vipPracticQueue.contains(p)) {
+                                    Bukkit.getScheduler().cancelTask(this.getTaskId());
+                                }
+                                if (urPos == 1) {
+                                    Bukkit.getScheduler().cancelTask(this.getTaskId());
+                                }
+                                if (urPos == 0) {
                                     Bukkit.getScheduler().cancelTask(this.getTaskId());
                                 }
                                 int urPos1 = urPos - 1;
@@ -66,7 +74,7 @@ public class ServerMenuListener implements Listener {
                                     p.sendMessage(Color.translate(plugin.getConfig().getString("queue.message").replaceAll("<pos>", urPos + "#").replaceAll("<total>", PriorityManager.vipPracticQueue.size() + "#")));
                                 }
                             }
-                        },plugin.getConfig().getInt("queue.delay") * 10, plugin.getConfig().getInt("queue.delay") * 10);
+                        },plugin.getConfig().getInt("queue.send-message-every") * 20, plugin.getConfig().getInt("queue.send-message-every") * 20);
                     }
 
                     //Putting the player in Queue!
@@ -75,7 +83,6 @@ public class ServerMenuListener implements Listener {
                     QueueManager.inserttoPracticeQueue(p, peopleinPracticeQueue);
                     plugin.setInQueueScoreboard(p);
                     int urPos = QueueManager.practiceQueue.lastIndexOf(p) + 1;
-                    p.sendMessage(Color.translate(plugin.getConfig().getString("queue.message").replaceAll("<pos>", urPos + "#").replaceAll("<total>", String.valueOf(QueueManager.practiceQueue.size()) + "#")));
                     //Getting the first place & sending them to Practice!
                     Bukkit.getScheduler().scheduleSyncDelayedTask(WHub.getINSTANCE(), new java.lang.Runnable() {
                         @Override
@@ -91,11 +98,20 @@ public class ServerMenuListener implements Listener {
                     }, plugin.getConfig().getInt("queue.delay") * 20);
 
                     //Sending the pos of the player every 2 seconds
-                    Runnable.scheduleSyncRepeatingTask(WHub.getINSTANCE(), new BukkitRunnable() {
+                    Bukkit.getScheduler().runTaskTimerAsynchronously(WHub.getINSTANCE(), new java.lang.Runnable() {
                         @Override
                         public void run() {
                             if (!QueueManager.practiceQueue.contains(p)) {
-                                Bukkit.getScheduler().cancelTask(this.getTaskId());
+                                return;
+                            }
+                            if (urPos == 0 && QueueManager.practiceQueue.size() == 1) {
+                                QueueManager.practiceQueue.remove(p);
+                                return;
+                            }
+
+                            if (QueueManager.practiceQueue.lastIndexOf(p) == 0 && QueueManager.practiceQueue.size() == 0) {
+                                QueueManager.practiceQueue.remove(p);
+                                return;
                             }
                             int urPos1 = urPos - 1;
                             if (QueueManager.practiceQueue.lastIndexOf(p) == 0) {
@@ -104,8 +120,9 @@ public class ServerMenuListener implements Listener {
                                 p.sendMessage(Color.translate(plugin.getConfig().getString("queue.message").replaceAll("<pos>", urPos + "#").replaceAll("<total>", String.valueOf(QueueManager.practiceQueue.size()) + "#")));
                             }
                         }
-                    }, plugin.getConfig().getInt("queue.delay") * 20, plugin.getConfig().getInt("queue.delay") * 20);
+                    }, 0, plugin.getConfig().getInt("queue.send-message-every") * 20);
                 }
+
             }
         }
     }

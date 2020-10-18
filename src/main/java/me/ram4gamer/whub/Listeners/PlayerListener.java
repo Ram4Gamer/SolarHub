@@ -29,6 +29,8 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void on(PlayerJoinEvent e) {
         Player player = e.getPlayer();
+        // Set Scoreboard
+        plugin.setMainScoreboard(player);
         //Teleport to spawn
         if (plugin.getSpawn().getConfigurationSection("spawn") == null) {
             return;
@@ -45,8 +47,7 @@ public class PlayerListener implements Listener {
         //give items
         ItemManager.giveDefaultItems(player);
 
-        // Set Scoreboard
-        plugin.setMainScoreboard(player);
+
     }
 
 

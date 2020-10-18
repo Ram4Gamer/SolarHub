@@ -1,0 +1,22 @@
+enabled: true
+
+lobby-title: "&bWHub"
+in-queue-title: "&bWHub"
+lobby:
+  - "&7&m-----------------"
+  - "&bOnline: &3<players>"
+  - "&bPing: &3<ping>"
+  - ""
+  - "<website>"
+  - "&7&m---------------&7--"
+in-queue:
+  - "&bWHUB &7| Hub"
+  - "&7&m-----------------"
+  - "&bOnline: &3<players>"
+  - "&bPing: &3<ping>"
+  - ""
+  - "&Byour pos is &3<pos> out of"
+  - "&3<total-queue>"
+  - ""
+  - "<website>"
+  - "&7&m-----------------"

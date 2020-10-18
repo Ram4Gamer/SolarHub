@@ -6,10 +6,17 @@
 media:
   website: "www.example.com"
 
+scoreboard:
+  update-every: 1
+
 queue:
   message: "&bYou are in pos &3<pos> &bout of &3<total>"
+  send-message-every: 2
   ## delay is how much seconds it takes to send each player
   delay: 4
+  ## donator delay is how much seconds it takes to send each player with a rank the permission is
+  ## hub.queue.priority
+  donator-delay: 2
 options:
   break-block: false
   pickup-items: false
