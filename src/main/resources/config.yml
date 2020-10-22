@@ -1,24 +1,60 @@
-#############################
-## wHub made by Ram4Gamer_ ##
-#############################
+#################################
+## SolarHub made by Ram4Gamer_ ##
+#################################
+
+join-message:
+  enabled: true
+  message:
+    - "&7&m----------------------"
+    - "&bWelcome&3 <player> to server"
+    - "&7* &bWebsite: <website>"
+    - "&7* &bStore: <store>"
+    - "&7* &bDiscord: <discord>"
+    - "&7&m----------------------"
+quit-message:
+  enabled: false
 
 
 media:
   website: "www.example.com"
+  store: "store.example.com"
+  discord: "discord.example.com"
 
 scoreboard:
-  update-every: 1
+  ## Do not set this lower to prevent scoreboard flicker!
+  update-every: 3
+
+builder-mode:
+  require-permission: true
+  permission: "hub.command.builder"
 
 queue:
   message: "&bYou are in pos &3<pos> &bout of &3<total>"
-  send-message-every: 2
+  send-message-every: 4
   ## delay is how much seconds it takes to send each player
   delay: 4
-  ## donator delay is how much seconds it takes to send each player with a rank the permission is
+  ## Donator delay is how much seconds it takes to send each player with a rank the permission is
   ## hub.queue.priority
   donator-delay: 2
+paused-queues:
+  Practice: false
+  KitMap: false
+  Hub: false
+
+servers:
+  # Note: You can only have a max of 5 servers
+  Practice:
+    name: "Practice"
+    bungeecord-name: "Practice"
+  KitMap:
+    name: "KitMap"
+    bungeecord-name: "KitMap"
+  Hub:
+    name: "Hub"
+    bungeecord-name: "Hub"
 options:
   break-block: false
+  place-blocks: false
   pickup-items: false
   drop-items: false
   weather-change: false

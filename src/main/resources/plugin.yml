@@ -1,8 +1,10 @@
-name: wHub
+name: SolarHub
 version: ${project.version}
-main: me.ram4gamer.whub.WHub
+main: com.solardev.SolarHub.SolarHub
 authors: [ Ram4Gamer_ ]
 commands:
   servermenu:
   setspawn:
   hub:
+  build:
+  joinqueue:

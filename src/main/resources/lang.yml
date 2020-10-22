@@ -1,0 +1,6 @@
+send-to-server: "&bSending you to &3<server>"
+setspawn-message: "&aYou have set the spawn point!"
+teleport-to-hub-message: "&bTeleporting you to &3Hub"
+No-permission: "&cNot enough permission to execute this command!"
+enabled-builder-mode: "&bYou have enabled &3Builder mode"
+disabled-builder-mode: "&bYou have disabled &3Builder mode"
