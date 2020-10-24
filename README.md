@@ -1,2 +1,2 @@
-hi there, this is wHub.
+hi there, this is SolarHub.
 You can use this source code to make your own Hub plugin enjoy
